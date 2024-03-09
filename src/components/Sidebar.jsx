@@ -17,6 +17,7 @@ const Sidebar = () => {
     {
       icon: <MdOutlineCategory />,
       value: "Categories",
+      pathname: "/Categories"
     },
   ];
 
@@ -35,7 +36,7 @@ const Sidebar = () => {
               return (
                 <>
                   <div
-                    onClick={Navigate(data.pathname)}
+                    onClick={()=>Navigate(data.pathname)}
                     key={value}
                     className="d-flex align-items-center py-2 justify-content-start ps-3 gap-2 mb-3"
                     style={{
