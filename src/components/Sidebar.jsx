@@ -44,18 +44,14 @@ const Sidebar = () => {
                       fontSize: "1.1rem",
                       background:
                         location.pathname === data.pathname
-                          ? "#E0ECFF"
+                          ? "#5932EA"
                           : "transparent",
-                      border:
-                        location.pathname === data.pathname
-                          ? "0.5px solid #3490F6"
-                          : "none",
                       borderRadius: "12px",
                       cursor: "pointer",
                       color:
                         location.pathname === data.pathname
-                          ? "#0068B9"
-                          : "#1A2433",
+                          ? "#fff"
+                          : "#9197B3",
                     }}
                   >
                     <span>{data.icon}</span>
