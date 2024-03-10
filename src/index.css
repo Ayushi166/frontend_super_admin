@@ -20,3 +20,7 @@ code {
   font-style: normal;
   font-weight: 400;
 }
+
+table,tbody,tr,th,td,thead{
+  border: 1px solid black!important;
+}
