@@ -83,7 +83,7 @@ const Dashboard = () => {
                 </div>
                 <Divider/>
                 <div>
-                <p>Citizen</p>
+                <p>Citizen Grievance</p>
     <p>0</p>
                 </div>
               </div>
@@ -107,7 +107,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="col-lg-6" >
-              <h2>Citizen Work</h2>
+              <h2>Citizen Grievance</h2>
               <table className="w-100 text-center" >
                 <thead >
                   <tr>
@@ -122,7 +122,7 @@ const Dashboard = () => {
                       return(
                         <tr key={key} >
                           <td className="p-1" >{key}</td>
-                          <td className="p-1" >{value.name}</td>
+                          <td className="p-1" >{"Complaint " + key }</td>
                           <td className="p-1" >{value.status}</td>
                         </tr>
                       )
