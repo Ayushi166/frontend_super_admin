@@ -12,7 +12,7 @@ const Categories = () => {
       <Header heading="Welcome to SuperAdmin!" />
       <div className="container h-100 pt-3" style={{ flex: 1 }}>
         <div className="row h-100">
-        {
+        {/* {
             data.length <= 0 && (
           <div className="col-12 d-flex flex-column align-items-center justify-content-center">
             <svg
@@ -40,17 +40,20 @@ const Categories = () => {
             <Button className="mt-3" variant="contained" size="small" >+ Add Category</Button>
           </div>
             )
-        }
-          {data.length > 0 && (
-            <>
+        } */}
+          {/* {data.length > 0 && (
+            <> */}
               <div className="col-2">
                 <Select variant="outlined" placeholder="Select Category">
                   <Option value="completed">Completed</Option>
                   <Option value="pending">Pending</Option>
                 </Select>
               </div>
-            </>
-          )}
+              <div className="col-12" >
+                <h3 className="text-danger text-center" >Currently No Data Found</h3>
+              </div>
+            {/* </>
+          )} */}
         </div>
       </div>
     </div>
