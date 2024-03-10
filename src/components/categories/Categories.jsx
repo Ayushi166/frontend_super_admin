@@ -45,8 +45,8 @@ const Categories = () => {
             <> */}
               <div className="col-2">
                 <Select variant="outlined" placeholder="Select Category">
-                  <Option value="completed">Completed</Option>
-                  <Option value="pending">Pending</Option>
+                  <Option value="offical">Official</Option>
+                  <Option value="citizen">Citizen</Option>
                 </Select>
               </div>
               <div className="col-12" >
