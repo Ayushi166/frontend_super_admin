@@ -3,6 +3,48 @@ import Header from "../Header";
 import { Divider } from "@mui/joy";
 
 const Dashboard = () => {
+  const data = [
+    {
+      sno : 1,
+      name:"project1",
+      status:"pending"
+    },
+    {
+      sno : 1,
+      name:"project2",
+      status:"completed"
+    },
+    {
+      sno : 1,
+      name:"project3",
+      status:"pending"
+    },
+    {
+      sno : 1,
+      name:"project4",
+      status:"completed"
+    },
+    {
+      sno : 1,
+      name:"project5",
+      status:"pending"
+    },
+    {
+      sno : 1,
+      name:"project6",
+      status:"completed"
+    },
+    {
+      sno : 1,
+      name:"project7",
+      status:"pending"
+    },
+    {
+      sno : 1,
+      name:"project8",
+      status:"completed"
+    },
+  ]
   return (
     <>
       {/* <div
@@ -69,13 +111,23 @@ const Dashboard = () => {
               <table className="w-100 text-center" >
                 <thead >
                   <tr>
-                  <th>S.no</th>
-                  <th>Name</th>
-                  <th>Status</th>
+                  <th className="p-1" style={{fontWeight:700}} >S.no</th>
+                  <th className="p-1" style={{fontWeight:700}} >Name</th>
+                  <th className="p-1" style={{fontWeight:700}} >Status</th>
                   </tr>
                 </thead>
-                <tbody className="w-100" style={{height:"200px"}} >
-                  <h4 className="text-center text-danger" >No Data Found!</h4>
+                <tbody className="w-100" >
+                  {
+                    data?.map((value,key)=>{
+                      return(
+                        <tr key={key} >
+                          <td className="p-1" >{key}</td>
+                          <td className="p-1" >{value.name}</td>
+                          <td className="p-1" >{value.status}</td>
+                        </tr>
+                      )
+                    })
+                  }
                 </tbody>
               </table>
             </div>
@@ -84,13 +136,23 @@ const Dashboard = () => {
               <table className="w-100 text-center" >
                 <thead >
                   <tr>
-                  <th>S.no</th>
-                  <th>Name</th>
-                  <th>Status</th>
+                  <th className="p-1" style={{fontWeight:700}} >S.no</th>
+                  <th className="p-1" style={{fontWeight:700}} >Name</th>
+                  <th className="p-1" style={{fontWeight:700}} >Status</th>
                   </tr>
                 </thead>
-                <tbody className="w-100" style={{height:"200px"}} >
-                  <h4 className="text-center text-danger" >No Data Found!</h4>
+                <tbody className="w-100" >
+                  {
+                    data?.map((value,key)=>{
+                      return(
+                        <tr key={key} >
+                          <td className="p-1" >{key}</td>
+                          <td className="p-1" >{value.name}</td>
+                          <td className="p-1" >{value.status}</td>
+                        </tr>
+                      )
+                    })
+                  }
                 </tbody>
               </table>
             </div>
