@@ -1,12 +1,36 @@
 import React from "react";
 import logoHelper from "../assets/logo-helper.svg";
-import { MdOutlineCategory } from "react-icons/md";
+import { HiUsers } from "react-icons/hi2";
 import { RiHome6Fill } from "react-icons/ri";
+import { TbHandStop } from "react-icons/tb";
+import { IoNewspaper } from "react-icons/io5";
+import { BiLogOutCircle } from "react-icons/bi";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
+import Slide from '@mui/material/Slide';
+
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const Navigate = useNavigate();
   const location = useLocation();
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+    setTimeout(()=>{
+        Navigate('/')
+    },2000)
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const data = [
     {
@@ -15,21 +39,40 @@ const Sidebar = () => {
       pathname: "/Dashboard",
     },
     {
-      icon: <MdOutlineCategory />,
-      value: "Categories",
-      pathname: "/Categories"
+      icon: <HiUsers  />,
+      value: "Users",
+      pathname: "/Users"
+    },
+    {
+      icon: <TbHandStop   />,
+      value: "Grievances",
+      pathname: "/Grievances"
+    },
+    {
+      icon: <IoNewspaper   />,
+      value: "Work",
+      pathname: "/Work"
     },
   ];
 
   return (
     <>
+    <Snackbar TransitionComponent={Slide} anchorOrigin={{vertical:"bottom",horizontal:"center"}} open={open} autoHideDuration={6000} onClose={handleClose}>
+    <Alert
+          severity="success"
+          variant="standard"
+          sx={{ width: '100%' }}
+        >
+          Logged out Successfully
+        </Alert>
+    </Snackbar>
+      <div style={{display:"flex",flexDirection:"column",height:"100vh"}} >
       <div className="p-0 d-flex align-items-center gap-1 justify-content-center py-3">
         <img src={logoHelper} alt="logo-helper" />
         {/* <h3 className="mb-0">SuperAdmin</h3> */}
       </div>
 
-      {/* <div className="d-flex flex-column gap-3"> */}
-      <div className="container">
+      <div className="container" style={{flex:1}} >
         <div className="row">
           <div className="col-12 pt-3">
             {data.map((data, value) => {
@@ -44,7 +87,7 @@ const Sidebar = () => {
                       fontSize: "1.1rem",
                       background:
                         location.pathname === data.pathname
-                          ? "#5932EA"
+                          ? "#027399"
                           : "transparent",
                       borderRadius: "12px",
                       cursor: "pointer",
@@ -63,7 +106,11 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-      {/* </div> */}
+      <div className="d-flex align-items-center py-2 mx-3  justify-content-center gap-2 mb-3" style={{background:"#FFEFEF",color:"#FF2525",borderRadius:"10px",cursor:"pointer"}} onClick={handleClick}  >
+            <span><BiLogOutCircle /></span>
+            <span>LogOut</span>
+      </div>
+      </div>
     </>
   );
 };

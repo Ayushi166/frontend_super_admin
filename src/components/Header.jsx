@@ -5,7 +5,7 @@ const Header = (props) => {
   return (
     <>
       <div
-        className="container sticky-top"
+        className="container-fluid sticky-top"
         style={{ borderBottom: "1px solid #E8E8E8",background:"#027399" }}
       >
         <div className="row p-0">

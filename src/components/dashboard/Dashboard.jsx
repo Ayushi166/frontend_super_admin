@@ -55,7 +55,7 @@
           type: 'donut',
         },
         colors: ['#00AC4F', '#DF0404'], // Specify custom colors here
-        labels: ['Pending', 'Closed'],
+        labels: ['Closed', 'Pending'],
         responsive: [{
           // breakpoint: 480,
           options: {
