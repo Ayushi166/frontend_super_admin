@@ -25,7 +25,7 @@ const Sidebar = () => {
     <>
       <div className="p-0 d-flex align-items-center gap-1 justify-content-center py-3">
         <img src={logoHelper} alt="logo-helper" />
-        <h3 className="mb-0">SuperAdmin</h3>
+        {/* <h3 className="mb-0">SuperAdmin</h3> */}
       </div>
 
       {/* <div className="d-flex flex-column gap-3"> */}

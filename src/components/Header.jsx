@@ -5,12 +5,12 @@ const Header = (props) => {
   return (
     <>
       <div
-        className="container sticky-top bg-white"
-        style={{ borderBottom: "1px solid #E8E8E8" }}
+        className="container sticky-top"
+        style={{ borderBottom: "1px solid #E8E8E8",background:"#027399" }}
       >
         <div className="row p-0">
           <div className="col-12 py-3 px-3 d-flex justify-content-between align-items-center">
-            <h3 className="mb-0 " style={{ color: "#1A2433" }}>
+            <h3 className="mb-0 " style={{ color: "#fff",fontFamily:"Poppins" }}>
               {props.heading}
             </h3>
                 <Avatar
