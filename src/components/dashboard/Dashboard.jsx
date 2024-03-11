@@ -3,9 +3,13 @@
   import { FiUserMinus } from "react-icons/fi";
   import Chart  from 'react-apexcharts'
 import { Table } from "react-bootstrap";
+import { useMediaQuery } from "react-responsive";
 
 
   const Dashboard = () => {
+    const isMobileOrTablet = useMediaQuery({
+      query: '(max-width: 968px)'
+    })
     const data = [
       {
         sno: 1,
@@ -76,10 +80,10 @@ import { Table } from "react-bootstrap";
     return (
       <>
         <div className='example'
-          style={{ display: "flex", flexDirection: "column", height: "100vh",overflowY:"auto" }}
+          style={{ display: "flex", flexDirection: "column", height: "100vh",overflowY:"auto",overflowX:"hidden" }}
         >
-          <Header heading="Welcome to Rural Development Department" />
-          <div className="container-fluid p-5" style={{flexGrow:1}} >
+          <Header heading="Rural Development Department" />
+          <div className={`container-fluid ${isMobileOrTablet?"p-1":"p-5"}`} style={{flexGrow:1}} >
             <div className="row align-items-center" style={{rowGap: "1rem" }}>
               <div
                 className="col-lg-8 col-md-12 col-sm-12 py-3"
@@ -310,21 +314,23 @@ import { Table } from "react-bootstrap";
 
               <div className="col-lg-4 col-md-12 col-sm-12" >
               <h3 className="" style={{fontFamily:"Poppins"}} >Complaints</h3>
-              <Chart  options={chartData.options} type="donut" series={chartData.series} />
+              <Chart className="w-100"  options={chartData.options} type="donut" series={chartData.series} />
               </div>
 
-              <div className="col-lg-6 col-md-12 col-sm-12">
-                <h2>Citizen Grievance</h2>
-                <table className="w-100 text-center">
+              <div className="col-lg-6 col-md-12 col-sm-12" >
+              <div className="card p-2 border-0" >
+
+                <h3 style={{fontFamily:"Poppins"}} >Citizen Grievance</h3>
+                <Table className="w-100 text-center">
                   <thead>
                     <tr>
-                      <th className="p-1" style={{ fontWeight: 700 }}>
+                      <th className="p-1" style={{ fontWeight: 700,color:"#949494" }}>
                         S.no
                       </th>
-                      <th className="p-1" style={{ fontWeight: 700 }}>
+                      <th className="p-1" style={{ fontWeight: 700,color:"#949494" }}>
                         Name
                       </th>
-                      <th className="p-1" style={{ fontWeight: 700 }}>
+                      <th className="p-1" style={{ fontWeight: 700,color:"#949494" }}>
                         Status
                       </th>
                     </tr>
@@ -333,27 +339,30 @@ import { Table } from "react-bootstrap";
                     {data?.map((value, key) => {
                       return (
                         <tr key={key}>
-                          <td className="p-1">{key}</td>
-                          <td className="p-1">{"Complaint " + key}</td>
-                          <td className="p-1">{value.status}</td>
+                          <td className="p-1 py-2">{key}</td>
+                          <td className="p-1 py-2">{"Complaint " + key}</td>
+                          <td className=""><span className="px-2 py-1" style={{background:value.status=="pending"?"#FFF1F1":"#E9FFF5",color:value.status=="pending"?"#CC1313":"#2E8760",borderRadius:"8px"}} >{value.status}</span></td>
                         </tr>
                       );
                     })}
                   </tbody>
-                </table>
+                </Table>
               </div>
-              <div className="col-lg-6 col-md-12 col-sm-12">
-                <h2>Offical Work</h2>
-                <table className="w-100 text-center">
+              </div>
+              <div className="col-lg-6 col-md-12 col-sm-12 bg-white " >
+                    <div className="card p-2 border-0" >
+
+                <h3 style={{fontFamily:"Poppins"}} >Offical Work</h3>
+                <Table className="w-100 text-center">
                   <thead>
                     <tr>
-                      <th className="p-1" style={{ fontWeight: 700 }}>
+                      <th className="p-1" style={{ fontWeight: 700,color:"#949494" }}>
                         S.no
                       </th>
-                      <th className="p-1" style={{ fontWeight: 700 }}>
+                      <th className="p-1" style={{ fontWeight: 700,color:"#949494" }}>
                         Name
                       </th>
-                      <th className="p-1" style={{ fontWeight: 700 }}>
+                      <th className="p-1" style={{ fontWeight: 700,color:"#949494" }}>
                         Status
                       </th>
                     </tr>
@@ -362,14 +371,15 @@ import { Table } from "react-bootstrap";
                     {data?.map((value, key) => {
                       return (
                         <tr key={key}>
-                          <td className="p-1">{key}</td>
-                          <td className="p-1">{value.name}</td>
-                          <td className="p-1">{value.status}</td>
+                          <td className="p-1 py-2">{key}</td>
+                          <td className="p-1 py-2">{value.name}</td>
+                          <td className=""><span className="px-2 py-1" style={{background:value.status=="pending"?"#FFF1F1":"#E9FFF5",color:value.status=="pending"?"#CC1313":"#2E8760",borderRadius:"8px"}} >{value.status}</span></td>
                         </tr>
                       );
                     })}
                   </tbody>
-                </table>
+                </Table>
+                    </div>
               </div>
             </div>
           </div>

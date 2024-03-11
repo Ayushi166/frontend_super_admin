@@ -11,7 +11,7 @@ const Users = () => {
     <>
 
     <div className='example' style={{ display: "flex", flexDirection: "column", height: "100vh",overflowY:"auto" }}>
-      <Header heading="Welcome to Rural Development Department" />
+      <Header heading="Rural Development Department" />
       <div className="container h-100 pt-3" style={{flexGrow:'1'}} >
         <div className="row h-100">
         {/* {

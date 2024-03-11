@@ -60,9 +60,9 @@ const Login = () => {
       <div className="container">
         <div className="row">
           <div className="col-12 text-center pt-4">
-            <div className="d-flex align-items-center gap-3 justify-content-center ">
+            <div className="d-flex flex-column align-items-center gap-3 justify-content-center ">
               <img src={logoHelper} alt="logo-helper" />
-              <h3 className="mb-0">SuperAdmin</h3>
+              <h3 className="mb-0">Rural Development Department</h3>
             </div>
           </div>
 
@@ -120,7 +120,7 @@ const Login = () => {
 
           </div>
           <div className="col-12 mt-4" > 
-            <p className="text-center" style={{color:"#586374"}} >© SuperAdmin 2023. All rights reserved</p>
+            <p className="text-center" style={{color:"#586374"}} >© Rural Development Department 2024. All rights reserved</p>
           </div>
         </div>
       </div>
