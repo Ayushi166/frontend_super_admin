@@ -1,16 +1,18 @@
 import React from "react";
 import Header from "../Header";
 import { Option, Select } from "@mui/joy";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 
 const data = [];
 console.log(data.length)
 
 const Users = () => {
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+    <>
+
+    <div className='example' style={{ display: "flex", flexDirection: "column", height: "100vh",overflowY:"auto" }}>
       <Header heading="Welcome to Rural Development Department" />
-      <div className="container h-100 pt-3" style={{ flex: 1 }}>
+      <div className="container h-100 pt-3" style={{flexGrow:'1'}} >
         <div className="row h-100">
         {/* {
             data.length <= 0 && (
@@ -57,6 +59,7 @@ const Users = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

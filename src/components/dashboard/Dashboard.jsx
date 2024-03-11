@@ -2,6 +2,7 @@
   import Header from "../Header";
   import { FiUserMinus } from "react-icons/fi";
   import Chart  from 'react-apexcharts'
+import { Table } from "react-bootstrap";
 
 
   const Dashboard = () => {
@@ -74,14 +75,14 @@
 
     return (
       <>
-        <div
-          style={{ display: "flex", flexDirection: "column", height: "100vh" }}
+        <div className='example'
+          style={{ display: "flex", flexDirection: "column", height: "100vh",overflowY:"auto" }}
         >
           <Header heading="Welcome to Rural Development Department" />
-          <div className="container h-100 p-5">
-            <div className="row align-items-center" style={{ rowGap: "1rem" }}>
+          <div className="container-fluid p-5" style={{flexGrow:1}} >
+            <div className="row align-items-center" style={{rowGap: "1rem" }}>
               <div
-                className="col-8 py-3"
+                className="col-lg-8 col-md-12 col-sm-12 py-3"
                 style={{
                   borderRadius: "30px",
                   border: "1px solid #F0F0F0",
@@ -92,7 +93,7 @@
                   <div className="col-12" >
                       <h3 className="mb-0 pt-3" style={{fontFamily:"Poppins"}} >Work Submitted</h3>
                   </div>
-                    <div className="col-4 d-flex align-items-center gap-2 py-3">
+                    <div className="col-lg-4 col-md-12 col-sm-12 d-flex align-items-center gap-2 py-3">
                       <div>
                         <svg
                           width="84"
@@ -158,7 +159,7 @@
                       </div>
                     </div>
                     {/* <Divider orientation="vertical"   inset="none" /> */}
-                    <div className="col-4 d-flex align-items-center gap-2 py-3">
+                    <div className="col-lg-4 col-md-12 col-sm-12 d-flex align-items-center gap-2 py-3">
                       <div>
                       <svg width="84" height="84" viewBox="0 0 84 84" fill="none" xmlns="http://www.w3.org/2000/svg">
   <circle cx="42" cy="42" r="42" fill="url(#paint0_linear_501_219)"/>
@@ -182,7 +183,7 @@
                       </div>
                     </div>
                     {/* <Divider orientation="vertical" inset="none" /> */}
-                    <div className="col-4 d-flex align-items-center gap-2 py-3">
+                    <div className="col-lg-4 col-md-12 col-sm-12 d-flex align-items-center gap-2 py-3">
                       
                       <div>
                       <FiUserMinus  className="p-4" style={{fontSize:"5rem",background:"#FFC5C5",color:"#DF0404",borderRadius:"50px"}}  />
@@ -201,7 +202,7 @@
                   <div className="col-12" >
                       <h3 className="mb-0 pt-3" style={{fontFamily:"Poppins"}} >Users</h3>
                   </div>
-                    <div className="col-4 d-flex align-items-center gap-2 py-3">
+                    <div className="col-lg-4 col-md-12 col-sm-12 d-flex align-items-center gap-2 py-3">
                       <div>
                         <svg
                           width="84"
@@ -267,7 +268,7 @@
                       </div>
                     </div>
                     {/* <Divider orientation="vertical"   inset="none" /> */}
-                    <div className="col-4 d-flex align-items-center gap-2 py-3">
+                    <div className="col-lg-4 col-md-12 col-sm-12 d-flex align-items-center gap-2 py-3">
                       <div>
                       <svg width="84" height="84" viewBox="0 0 84 84" fill="none" xmlns="http://www.w3.org/2000/svg">
   <circle cx="42" cy="42" r="42" fill="url(#paint0_linear_501_219)"/>
@@ -291,7 +292,7 @@
                       </div>
                     </div>
                     {/* <Divider orientation="vertical" inset="none" /> */}
-                    <div className="col-4 d-flex align-items-center gap-2 py-3">
+                    <div className="col-lg-4 col-md-12 col-sm-12 d-flex align-items-center gap-2 py-3">
                       <div>
               
                       <FiUserMinus  className="p-4" style={{fontSize:"5rem",background:"#FFC5C5",color:"#DF0404",borderRadius:"50px"}}  />
@@ -307,11 +308,12 @@
                 </div>
               </div>
 
-              <div className="col-4" >
+              <div className="col-lg-4 col-md-12 col-sm-12" >
               <h3 className="" style={{fontFamily:"Poppins"}} >Complaints</h3>
               <Chart  options={chartData.options} type="donut" series={chartData.series} />
               </div>
-              <div className="col-lg-6">
+
+              <div className="col-lg-6 col-md-12 col-sm-12">
                 <h2>Citizen Grievance</h2>
                 <table className="w-100 text-center">
                   <thead>
@@ -340,7 +342,7 @@
                   </tbody>
                 </table>
               </div>
-              <div className="col-lg-6">
+              <div className="col-lg-6 col-md-12 col-sm-12">
                 <h2>Offical Work</h2>
                 <table className="w-100 text-center">
                   <thead>
