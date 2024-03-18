@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import logoHelper from "../assets/logo-helper.svg";
+import "../assets/style.css";
 import {
   Card,
   TextField,
@@ -57,26 +58,28 @@ const Login = () => {
           Verified Successfully
         </Alert>
     </Snackbar>
-      <div className="container">
-        <div className="row">
-          <div className="col-12 text-center pt-4">
-            <div className="d-flex flex-column align-items-center gap-3 justify-content-center ">
-              <img src={logoHelper} alt="logo-helper" />
-              <h3 className="mb-0">Rural Development Department</h3>
-            </div>
-          </div>
 
-          <div className="col-12 pt-4 d-flex justify-content-center">
-            <Card
-              className="p-3 px-4 pb-4"
-              sx={{
-                width: "500px",
-                border: "1px solid #E0E4F0",
-                borderRadius: "20px",
-              }}
-            >
+    <div class="container-fluid vh-100 overflow-auto">
+      <div class="row vh-100 ">
+      <div class="col-lg-6 bg-gray p-5 text-center">
+
+      <div class="img-cover p-4">
+                    <img src={"public/JK_logo.png"} />
+                    </div>
+
+                   <h4 class="text-center fw-bolder">Government of Jammu and Kashmir</h4>
+                   <p class="mb-3 fs-7 sub-title">Department of Rural Development and Panchayati Raj</p>
+                   
+                   
+                </div>
+
+
+                <div class="col-lg-6 p  vh-100">
+                   <div class="row d-flex vh-100">
+                   <div class="col-md-8 p-4 ikigui m-auto text-center align-items-center">
+                   <div class="p-3 px-4 pb-4 ikigui m-auto text-center align-items-center">
               <h2 className="text-center" style={{ fontWeight: 600 }}>
-                Login.
+                Welcome Back!
               </h2>
               <TextField
                 id="outlined-basic"
@@ -116,13 +119,27 @@ const Login = () => {
               />
 
               <Button onClick={handleClick} variant="contained" className={` ${error ? "mt-2" : "mt-3"} w-100 py-2`} >Continue</Button>
-            </Card>
+            </div>
+                   
+                   </div>
+</div>
+            </div>
 
-          </div>
-          <div className="col-12 mt-4" > 
-            <p className="text-center" style={{color:"#586374"}} >© Rural Development Department 2024. All rights reserved</p>
-          </div>
-        </div>
+      </div>
+    </div>
+
+
+
+      <div className="container">
+        
+
+
+
+
+
+
+      
+        
       </div>
     </>
   );

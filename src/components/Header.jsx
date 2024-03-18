@@ -76,7 +76,7 @@ const Header = (props) => {
             </p>
 
             ):(
-            <h3 className="mb-0 " style={{ color: "#fff",fontFamily:"Poppins" }}>
+            <h3 className="mb-0 head-title" style={{ color: "#fff",fontFamily:"Poppins" }}>
               {props.heading}
             </h3>
             )
@@ -105,7 +105,7 @@ const Header = (props) => {
         </Offcanvas.Header>
         <Offcanvas.Body>
         <div style={{display:"flex",flexDirection:"column",height:"80vh"}} >
-      <div className="p-0 d-flex align-items-center gap-1 justify-content-center py-3">
+      <div className="p-0 d-flex align-items-center gap-1 justify-content-center py-2">
         <img src={logoHelper} alt="logo-helper" />
         {/* <h3 className="mb-0">SuperAdmin</h3> */}
       </div>

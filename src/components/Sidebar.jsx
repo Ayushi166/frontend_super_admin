@@ -53,6 +53,11 @@ const Sidebar = () => {
       value: "Work",
       pathname: "/Work"
     },
+    {
+      icon: <IoNewspaper   />,
+      value: "Add New User",
+      pathname: "/users/Add_New"
+    },
   ];
 
   return (
@@ -84,7 +89,7 @@ const Sidebar = () => {
                     className="d-flex align-items-center py-2 justify-content-start ps-3 gap-2 mb-3"
                     style={{
                       fontFamily: "Inter",
-                      fontSize: "1.1rem",
+                      fontSize: "1rem",
                       background:
                         location.pathname === data.pathname
                           ? "#027399"
@@ -106,9 +111,9 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-      <div className="d-flex align-items-center py-2 mx-3  justify-content-center gap-2 mb-3" style={{background:"#FFEFEF",color:"#FF2525",borderRadius:"10px",cursor:"pointer"}} onClick={handleClick}  >
+      <div className="d-flex align-items-center py-2 mx-3  justify-content-center gap-2 mb-3" style={{background:"#FFEFEF",color:"#FF2525",borderRadius:"10px", cursor:"pointer"}} onClick={handleClick}  >
             <span><BiLogOutCircle /></span>
-            <span>LogOut</span>
+            <span className="logout">LogOut</span>
       </div>
       </div>
     </>
