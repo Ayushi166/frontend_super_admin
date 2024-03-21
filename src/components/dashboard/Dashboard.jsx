@@ -1,11 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../Header";
 import { FiUserMinus } from "react-icons/fi";
 import Chart from "react-apexcharts";
 import { Table } from "react-bootstrap";
 import { useMediaQuery } from "react-responsive";
+import { BASE_URL } from "../../env";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
+
+  const [usersData,setUsersData] = useState({});
+  const Navigate = useNavigate();
+
+  const usersApi = async()=>{
+    try{
+      const myHeaders = new Headers();
+myHeaders.append("Authorization",`Bearer ${localStorage.getItem("token")}`);
+
+const requestOptions = {
+  method: "GET",
+  headers: myHeaders,
+  redirect: "follow"
+};
+
+ const response = await fetch(`${BASE_URL}/number/all/users`, requestOptions)
+ const result = await response.json();
+ if(result.status==="001"){
+  setUsersData(result.responseData);
+ }else if(result.status==="002") {
+  localStorage.removeItem("token");
+  localStorage.removeItem("name")
+  Navigate("/");
+ }
+    }catch(e){
+      console.log(e);
+    }
+  }
+
   const isMobileOrTablet = useMediaQuery({
     query: "(max-width: 968px)",
   });
@@ -75,6 +106,10 @@ const Dashboard = () => {
       ],
     },
   });
+
+  useEffect(()=>{
+    usersApi();
+  },[])
 
   return (
     <>
@@ -154,7 +189,7 @@ const Dashboard = () => {
                       <p className="mb-0 das-title">
                         Total Users
                       </p>
-                      <h5>10</h5>
+                      <h5>{usersData?.total_users || 0}</h5>
                     </div>
                   </div>
                   {/* <Divider orientation="vertical"   inset="none" /> */}
@@ -166,7 +201,7 @@ const Dashboard = () => {
                       <p className="mb-0 das-title">
                         Offical
                       </p>
-                      <h5>0</h5>
+                      <h5>{usersData?.officials || 0}</h5>
                     </div>
                   </div>
                   {/* <Divider orientation="vertical" inset="none" /> */}
@@ -178,7 +213,7 @@ const Dashboard = () => {
                       <p className="mb-0 das-title">
                         Citizen
                       </p>
-                      <h5>0</h5>
+                      <h5>{usersData?.citizens || 0}</h5>
                     </div>
                   </div>
                 </div>
