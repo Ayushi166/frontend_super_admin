@@ -78,12 +78,12 @@ const Sidebar = () => {
       icon: <IoNewspaper />,
       value: "Work",
       pathname: "/Work",
-    },
-    {
-      icon: <IoNewspaper />,
-      value: "Add New Official",
-      pathname: "/users/Add_New",
-    },
+    }
+    // {
+    //   icon: <IoNewspaper />,
+    //   value: "Add New Official",
+    //   pathname: "/users/Add_New",
+    // },
   ];
 
   return (
