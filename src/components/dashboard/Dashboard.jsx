@@ -33,6 +33,17 @@ const requestOptions = {
   setUsersCount(result.userCounts);
   setProjectsData(result.recentProjects);
   setGrievanceData(result.recentGrievances)
+  const grievanceData = Object.entries(result.grievanceCounts)
+  .filter(([key]) => key !== 'total') 
+  .map(([label, value]) => ({ label, value }));
+setChartData(prevState => ({
+  ...prevState,
+  series: grievanceData.map(data => data.value),
+  options: {
+    ...prevState.options,
+    labels: grievanceData.map(data => data.label),
+  }
+}));
  }else if(result.status==="002") {
   localStorage.removeItem("token");
   localStorage.removeItem("name")
@@ -48,16 +59,15 @@ const requestOptions = {
   });
 
   const [chartData, setChartData] = useState({
-    series: [50, 50],
+    series: [0, 0,0],
     options: {
       chart: {
         type: "donut",
       },
-      colors: ["#00AC4F", "#DF0404"], // Specify custom colors here
-      labels: ["Closed", "Pending"],
+      colors: ["#16C37A", "#C3BC16","#C31616"],
+      labels: ["Closed", "Pending","Rejected"],
       responsive: [
         {
-          // breakpoint: 480,
           options: {
             chart: {
               width: "100%",
@@ -234,16 +244,16 @@ const requestOptions = {
                               style={{
                                 background:
                                   value.grievance_status == 0
-                                    ? "#FFF1F1"
-                                    : "#E9FFF5",
+                                    ? "#FAFFE5"
+                                    : value.grievance_status== 1?"#E5FFF2":"#FFE5E5",
                                 color:
                                   value.grievance_status == 0
-                                    ? "#CC1313"
-                                    : "#2E8760",
+                                    ? "#C3BC16"
+                                    : value.grievance_status== 1?"#16C37A":"#C31616",
                                 borderRadius: "8px",
                               }}
                             >
-                              {value.grievance_status==0?"Pending":"Completed"}
+                              {value.grievance_status==0?"Pending":value.grievance_status==1?"Closed":"Rejected"}
                             </span>
                           </td>
                         </tr>
@@ -289,16 +299,16 @@ const requestOptions = {
                               style={{
                                 background:
                                 value.project_status == 0
-                                    ? "#FFF1F1"
-                                    : "#E9FFF5",
+                                    ? "#FAFFE5"
+                                    : value.project_status== 1?"#E5FFF2":"#FFE5E5",
                                 color:
-                                  value.project_status == 0
-                                    ? "#CC1313"
-                                    : "#2E8760",
+                                value.project_status == 0
+                                    ? "#C3BC16"
+                                    : value.project_status== 1?"#16C37A":"#C31616",
                                 borderRadius: "8px",
                               }}
                             >
-                              {value.project_status==0?"Pending":"Completed"}
+                              {value.project_status==0?"Pending":value.project_status==1?"Completed":"Rejected"}
                             </span>
                           </td>
                         </tr>
