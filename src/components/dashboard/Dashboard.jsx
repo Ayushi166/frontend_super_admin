@@ -9,7 +9,10 @@ import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
 
-  const [usersData,setUsersData] = useState({});
+  const [projectsCount,setProjectsCount] = useState({});
+  const [usersCount,setUsersCount] = useState({});
+  const [projectsData,setProjectsData] = useState([]);
+  const [grievanceData,setGrievanceData] = useState([]);
   const Navigate = useNavigate();
 
   const usersApi = async()=>{
@@ -23,10 +26,13 @@ const requestOptions = {
   redirect: "follow"
 };
 
- const response = await fetch(`${BASE_URL}/number/all/users`, requestOptions)
+ const response = await fetch(`${BASE_URL}/admin/dashboard`, requestOptions)
  const result = await response.json();
  if(result.status==="001"){
-  setUsersData(result.responseData);
+  setProjectsCount(result.projects_counts);
+  setUsersCount(result.userCounts);
+  setProjectsData(result.recentProjects);
+  setGrievanceData(result.recentGrievances)
  }else if(result.status==="002") {
   localStorage.removeItem("token");
   localStorage.removeItem("name")
@@ -40,48 +46,6 @@ const requestOptions = {
   const isMobileOrTablet = useMediaQuery({
     query: "(max-width: 968px)",
   });
-  const data = [
-    {
-      sno: 1,
-      name: "project1",
-      status: "pending",
-    },
-    {
-      sno: 1,
-      name: "project2",
-      status: "completed",
-    },
-    {
-      sno: 1,
-      name: "project3",
-      status: "pending",
-    },
-    {
-      sno: 1,
-      name: "project4",
-      status: "completed",
-    },
-    {
-      sno: 1,
-      name: "project5",
-      status: "pending",
-    },
-    {
-      sno: 1,
-      name: "project6",
-      status: "completed",
-    },
-    {
-      sno: 1,
-      name: "project7",
-      status: "pending",
-    },
-    {
-      sno: 1,
-      name: "project8",
-      status: "completed",
-    },
-  ];
 
   const [chartData, setChartData] = useState({
     series: [50, 50],
@@ -145,7 +109,7 @@ const requestOptions = {
                       <p className="mb-0 das-title">
                         Total Work
                       </p>
-                      <h5>10</h5>
+                      <h5>{projectsCount?.total || 0}</h5>
                     </div>
                   </div>
                   {/* <Divider orientation="vertical"   inset="none" /> */}
@@ -157,7 +121,7 @@ const requestOptions = {
                       <p className="mb-0 das-title">
                         Inprogress
                       </p>
-                      <h5>10</h5>
+                      <h5>{projectsCount?.progress || 0}</h5>
                     </div>
                   </div>
                   {/* <Divider orientation="vertical" inset="none" /> */}
@@ -169,7 +133,7 @@ const requestOptions = {
                       <p className="mb-0 das-title">
                         Completed
                       </p>
-                      <h5>10</h5>
+                      <h5>{projectsCount?.closed || 0}</h5>
                     </div>
                   </div>
                 </div>
@@ -189,7 +153,7 @@ const requestOptions = {
                       <p className="mb-0 das-title">
                         Total Users
                       </p>
-                      <h5>{usersData?.total_users || 0}</h5>
+                      <h5>{usersCount?.total || 0}</h5>
                     </div>
                   </div>
                   {/* <Divider orientation="vertical"   inset="none" /> */}
@@ -201,7 +165,7 @@ const requestOptions = {
                       <p className="mb-0 das-title">
                         Offical
                       </p>
-                      <h5>{usersData?.officials || 0}</h5>
+                      <h5>{usersCount?.official || 0}</h5>
                     </div>
                   </div>
                   {/* <Divider orientation="vertical" inset="none" /> */}
@@ -213,7 +177,7 @@ const requestOptions = {
                       <p className="mb-0 das-title">
                         Citizen
                       </p>
-                      <h5>{usersData?.citizens || 0}</h5>
+                      <h5>{usersCount?.citizen || 0}</h5>
                     </div>
                   </div>
                 </div>
@@ -259,27 +223,27 @@ const requestOptions = {
                     </tr>
                   </thead>
                   <tbody className="w-100">
-                    {data?.map((value, key) => {
+                    {grievanceData?.map((value, key) => {
                       return (
                         <tr key={key}>
-                          <td className="p-1 py-2">{key}</td>
-                          <td className="p-1 py-2">{"Complaint " + key}</td>
+                          <td className="p-1 py-2">{key+1}</td>
+                          <td className="p-1 py-2">{value.grievance_details}</td>
                           <td className="">
                             <span
                               className="px-2 py-1"
                               style={{
                                 background:
-                                  value.status == "pending"
+                                  value.grievance_status == 0
                                     ? "#FFF1F1"
                                     : "#E9FFF5",
                                 color:
-                                  value.status == "pending"
+                                  value.grievance_status == 0
                                     ? "#CC1313"
                                     : "#2E8760",
                                 borderRadius: "8px",
                               }}
                             >
-                              {value.status}
+                              {value.grievance_status==0?"Pending":"Completed"}
                             </span>
                           </td>
                         </tr>
@@ -314,27 +278,27 @@ const requestOptions = {
                     </tr>
                   </thead>
                   <tbody className="w-100">
-                    {data?.map((value, key) => {
+                    {projectsData?.map((value, key) => {
                       return (
                         <tr key={key}>
-                          <td className="p-1 py-2">{key}</td>
-                          <td className="p-1 py-2">{value.name}</td>
+                          <td className="p-1 py-2">{key+1}</td>
+                          <td className="p-1 py-2">{value.remarks}</td>
                           <td className="">
                             <span
                               className="px-2 py-1"
                               style={{
                                 background:
-                                  value.status == "pending"
+                                value.project_status == 0
                                     ? "#FFF1F1"
                                     : "#E9FFF5",
                                 color:
-                                  value.status == "pending"
+                                  value.project_status == 0
                                     ? "#CC1313"
                                     : "#2E8760",
                                 borderRadius: "8px",
                               }}
                             >
-                              {value.status}
+                              {value.project_status==0?"Pending":"Completed"}
                             </span>
                           </td>
                         </tr>

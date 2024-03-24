@@ -58,7 +58,7 @@ const Users = () => {
   const [mobile, setMobile] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const [gender,setGender] = useState('');
+  const [gender,setGender] = useState('');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -130,8 +130,8 @@ const raw = JSON.stringify({
   "lastName": lastName,
   "mobile": mobile,
   "email": email,
-  "password": password
-  // "gender":gender
+  "password": password,
+  "gender":gender
 });
 
 const requestOptions = {
@@ -152,7 +152,7 @@ const result = await response.json();
     setEmail("");
     setMobile("");
     setPassword("");
-    // setGender("");
+    setGender("");
   }else if(result.status=="VAL_ERR"){
     setOpen1(true);
   }else if(result.status=="002") {
@@ -166,6 +166,7 @@ const result = await response.json();
 }
 
 const deleteOffical = async(id)=>{
+  setOpen2(false);
   try{
     const myHeaders = new Headers();
 myHeaders.append("Authorization", `Bearer ${localStorage.getItem("token")}`);
@@ -180,6 +181,33 @@ const requestOptions = {
  const result = await response.json();
  if(result.status=="001"){
    getOfficials();
+   setOpen2(true);
+ }else if(result.status=="002") {
+  localStorage.removeItem("token");
+  localStorage.removeItem("name")
+  Navigate("/");
+  }
+  
+  }catch(e){
+    console.log(e);
+  }
+}
+const deleteCitizen = async(id)=>{
+  setOpen2(false)
+  try{
+    const myHeaders = new Headers();
+myHeaders.append("Authorization", `Bearer ${localStorage.getItem("token")}`);
+
+const requestOptions = {
+  method: "DELETE",
+  headers: myHeaders,
+  redirect: "follow"
+};
+  
+ const response = await fetch(`${BASE_URL}/delete/citizen/${id}`, requestOptions)
+ const result = await response.json();
+ if(result.status=="001"){
+   getCitizens();
    setOpen2(true);
  }else if(result.status=="002") {
   localStorage.removeItem("token");
@@ -298,7 +326,9 @@ useEffect(()=>{
                 value==0?<>
                 <CustomTabPanel value={value} index={0}>
                 {
-                  data.length>=0?(
+                  data.length<=0?(
+                    <h3 className="text-danger text-center" >Currently No Data Found</h3>
+                  ):(
                 <Table className="w-100" responsive >
                   <thead>
                     <tr >
@@ -360,15 +390,15 @@ useEffect(()=>{
                     
                   </tbody>
                 </Table>
-                  ):(
-                    <h3 className="text-danger text-center" >Currently No Data Found</h3>
                   )
                 }
       </CustomTabPanel>
                 </>:<>
                 <CustomTabPanel value={value} index={1} >
                 {
-                  data1.length>=0?(
+                  data1.length<=0?(
+                    <h3 className="text-danger text-center" >Currently No Data Found</h3>
+                  ):(
                 <Table className="w-100" responsive >
                   <thead>
                     <tr >
@@ -382,13 +412,13 @@ useEffect(()=>{
                         className="p-1"
                         style={{fontWeight:500}}
                       >
-                        First Name
+                        Name
                       </th>
                       <th
                         className="p-1"
                         style={{fontWeight:500}}
                       >
-                       Last Name
+                       Gender
                       </th>
                       <th
                         className="p-1"
@@ -416,11 +446,11 @@ useEffect(()=>{
                                 <>
                     <tr key={key} >
                                 <td className='mb-0' >{key+1}</td>
-                                <td className='mb-0' >{res.firstName}</td>
-                                <td className='mb-0' >{res.res.lastName}</td>
+                                <td className='mb-0' >{res.firstName + " " + res.lastName}</td>
+                                <td className='mb-0' >{res.gender}</td>
                                 <td className='mb-0' >{res.email}</td>
                                 <td className='mb-0' >{res.mobile}</td>
-                                <td className='' ><button className='btn btn-danger' onClick={()=>deleteOffical(res.id)} >Delete</button></td>
+                                <td className='' ><button className='btn btn-danger' onClick={()=>deleteCitizen(res.id)}  >Delete</button></td>
                     </tr>
                                 </>
                             )
@@ -430,8 +460,6 @@ useEffect(()=>{
                     
                   </tbody>
                 </Table>
-                  ):(
-                    <h3 className="text-danger text-center" >Currently No Data Found</h3>
                   )
                 }
 
@@ -479,14 +507,14 @@ useEffect(()=>{
                 onChange={(e) => setLastName(e.target.value)}
               />
             </Form.Group>
-            {/* <Form.Group className="mb-3" controlId="formGroupGender">
+            <Form.Group className="mb-3" controlId="formGroupGender">
               <Form.Label>Gender</Form.Label>
               <Form.Select onChange={(e)=>{setGender(e.target.value)}} aria-label="Default select example">
       <option hidden selected >Open this select menu</option>
       <option value="Male">Male</option>
       <option value="Female">Female</option>
     </Form.Select>
-            </Form.Group> */}
+            </Form.Group>
             <Form.Group className="mb-3" controlId="formGroupMobile">
               <Form.Label>Mobile</Form.Label>
               <Form.Control
