@@ -44,7 +44,7 @@ setChartData(prevState => ({
     labels: grievanceData.map(data => data.label),
   }
 }));
- }else if(result.status==="002") {
+ }else if(result.status==="003") {
   localStorage.removeItem("token");
   localStorage.removeItem("name")
   Navigate("/");

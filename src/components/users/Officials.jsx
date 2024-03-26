@@ -21,7 +21,7 @@ const response = await fetch(`${BASE_URL}/show/all/officials`, requestOptions)
 const result = await response.json();
 if(result.status==="001"){
     setData(result.officials);
-}else if(result.status==="002") {
+}else if(result.status==="003") {
     localStorage.removeItem("token");
     localStorage.removeItem("name")
     Navigate("/");

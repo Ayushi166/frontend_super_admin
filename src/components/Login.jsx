@@ -71,7 +71,7 @@ const Login = () => {
           setTimeout(() => {
             Navigate("/Dashboard");
           }, 1000);
-        } else if(result.status==="002"){
+        } else if(result.status==="003"){
           if(result.message==="Username is not Registered"){
             setEmailError(true);
           }else if(result.message==="Incorrect password"){
@@ -167,7 +167,7 @@ const Login = () => {
                     onChange={(e) => setEmail(e.target.value)}
                   />
                   <TextField
-                    id="outlined-basic"
+                    id="outlined-basic1"
                     type={showPassword ? "text" : "password"}
                     label="Password"
                     variant="outlined"

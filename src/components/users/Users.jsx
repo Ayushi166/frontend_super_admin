@@ -88,7 +88,7 @@ const Users = () => {
       const result = await response.json();
       if (result.status == "001") {
         setData(result.officials);
-      } else if (result.status == "002") {
+      } else if (result.status == "003") {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
         Navigate("/");
@@ -119,7 +119,7 @@ const Users = () => {
       const result = await response.json();
       if (result.status == "001") {
         setData1(result.citizens);
-      } else if (result.status == "002") {
+      } else if (result.status == "003") {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
         Navigate("/");
@@ -168,7 +168,7 @@ const Users = () => {
         setGender("");
       } else if (result.status == "VAL_ERR") {
         setOpen1(true);
-      } else if (result.status == "002") {
+      } else if (result.status == "003") {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
         Navigate("/");
@@ -201,7 +201,7 @@ const Users = () => {
       if (result.status == "001") {
         getOfficials();
         setOpen2(true);
-      } else if (result.status == "002") {
+      } else if (result.status == "003") {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
         Navigate("/");
@@ -233,7 +233,7 @@ const Users = () => {
       if (result.status == "001") {
         getCitizens();
         setOpen2(true);
-      } else if (result.status == "002") {
+      } else if (result.status == "003") {
         localStorage.removeItem("token");
         localStorage.removeItem("name");
         Navigate("/");
